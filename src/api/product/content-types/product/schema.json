@@ -12,26 +12,44 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "title": {
       "type": "string",
       "required": true,
       "maxLength": 70,
       "minLength": 3
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
-    },
-    "desc": {
-      "type": "richtext",
       "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "richtext",
+      "required": false,
       "maxLength": 150
     },
     "price": {
+      "type": "integer",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "t-shirt",
+        "pant",
+        "shoes",
+        "belt",
+        "tie"
+      ]
+    },
+    "availableQty": {
       "type": "integer",
       "required": true
     }
