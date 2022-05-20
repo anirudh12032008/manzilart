@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
     fourthLink="Contact Us"
     buttonText="Sign Up"
     imgLink="/manzillogo.PNG"
+
   />
     <Component {...pageProps} /></>
 }

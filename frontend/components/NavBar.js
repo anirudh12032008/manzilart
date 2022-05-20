@@ -7,6 +7,7 @@
 // }
 
 import React from "react";
+import Link from "next/link";
 
 export default function NavBar(props) {
   return (
@@ -24,10 +25,18 @@ export default function NavBar(props) {
                 <span className="ml-3 text-xl">{props.title}</span>
               </a>
               <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a className="mr-5 hover:text-gray-900">{props.firstLink}</a>
-                <a className="mr-5 hover:text-gray-900">{props.secondLink}</a>
-                <a className="mr-5 hover:text-gray-900">{props.thirdLink}</a>
-                <a className="mr-5 hover:text-gray-900">{props.fourthLink}</a>
+                <Link href="/">
+                  <a className="mr-5 hover:text-gray-900">{props.firstLink}</a>
+                </Link>
+                <Link href="/about">
+                  <a className="mr-5 hover:text-gray-900">{props.secondLink}</a>
+                </Link>
+                <Link href="/products">
+                  <a className="mr-5 hover:text-gray-900">{props.thirdLink}</a>
+                </Link>
+                <Link href="/contact">
+                  <a className="mr-5 hover:text-gray-900">{props.fourthLink}</a>
+                </Link>
               </nav>
               <button className="inline-flex items-center bg-purple-800 border-0 py-2 px-4 md:py-1 md:px-2 focus:outline-none hover:bg-purple-300 rounded text-base mt-4 md:mt-0 text-neutral-50">
                 {props.buttonText}
