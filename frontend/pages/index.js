@@ -4,5 +4,5 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  return <div className="container mx-auto px-4 py-2"> Home</div>;
+  return <div className="container mx-auto px-4 py-2"></div>;
 }

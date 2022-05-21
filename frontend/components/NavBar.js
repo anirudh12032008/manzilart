@@ -37,6 +37,9 @@ export default function NavBar(props) {
                 <Link href="/contact">
                   <a className="mr-5 hover:text-gray-900">{props.fourthLink}</a>
                 </Link>
+                <Link href="/checkout">
+                  <a className="mr-5 hover:text-gray-900">Cart({props.cart.length})</a>
+                </Link>
               </nav>
               <button className="inline-flex items-center bg-purple-800 border-0 py-2 px-4 md:py-1 md:px-2 focus:outline-none hover:bg-purple-300 rounded text-base mt-4 md:mt-0 text-neutral-50">
                 {props.buttonText}

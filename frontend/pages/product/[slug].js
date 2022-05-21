@@ -1,7 +1,9 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-function Slug({ product }) {
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
+
+function Slug({ product, addToCart }) {
   const router = useRouter();
   const { slug } = router.query;
   return (
@@ -14,8 +16,7 @@ function Slug({ product }) {
               className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
               src={
                 product.attributes.image.data &&
-                "http://localhost:1337" +
-                  product.attributes.image.data.attributes.formats.medium.url
+                `${API_URL}${product.attributes.image.data.attributes.formats.medium.url}`
               }
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -132,11 +133,21 @@ function Slug({ product }) {
                   ₹​ {product.attributes.price}
                 </span>
                 <div className="flex mx-5">
-                  <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded">
+                  <button
+                    onClick={() => {
+                      addToCart(slug, 1, product.attributes.price);
+                    }}
+                    className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded"
+                  >
                     Add to cart
                   </button>
-                  <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded">
-                    Buy Now
+                  <button
+                    onClick={() => {
+                      router.push("/checkout");
+                    }}
+                    className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-indigo-600 rounded"
+                  >
+                    Check Out
                   </button>
                 </div>
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -162,18 +173,17 @@ function Slug({ product }) {
 
 export async function getServerSideProps(context) {
   //   console.log(context.query.slug);
-  let headers = {
-    Authorization:
-      "Bearer 0497cb70b764f4e631c904c47fcb53dc96a6d3af657d9c967d03ff1782f6fe0cd1bb4e68c8d34b3e3b069954334e3af287a6c9ecefb30aff36cf09552136f814001d47f7ce568ddbef38cac52cf86574e9ac9a38157bcd64b0b8e7c83215d495cab4888f0dd7e3aad87c4bd07df21958823830a1a7658eb2e3868dcd705285e3",
-  };
-  let a = await fetch(
-    "http://localhost:1337/api/products?filters[slug]=" +
-      context.query.slug +
-      "&populate=*",
-    {
-      headers: headers,
-    }
-  );
+  // let headers = {
+  //   Authorization:
+  //     "Bearer 0497cb70b764f4e631c904c47fcb53dc96a6d3af657d9c967d03ff1782f6fe0cd1bb4e68c8d34b3e3b069954334e3af287a6c9ecefb30aff36cf09552136f814001d47f7ce568ddbef38cac52cf86574e9ac9a38157bcd64b0b8e7c83215d495cab4888f0dd7e3aad87c4bd07df21958823830a1a7658eb2e3868dcd705285e3",
+  // };
+  let apiFetchUrl = `${API_URL}/api/products?filters[slug]=${context.query.slug}&populate=*`;
+  // console.log(apiFetchUrl);
+  let a = await fetch(apiFetchUrl, {
+    headers: {
+      Authorization: `bearer 0497cb70b764f4e631c904c47fcb53dc96a6d3af657d9c967d03ff1782f6fe0cd1bb4e68c8d34b3e3b069954334e3af287a6c9ecefb30aff36cf09552136f814001d47f7ce568ddbef38cac52cf86574e9ac9a38157bcd64b0b8e7c83215d495cab4888f0dd7e3aad87c4bd07df21958823830a1a7658eb2e3868dcd705285e3`,
+    },
+  });
   let product = await a.json();
   return {
     props: { product: product.data[0] }, // will be passed to the page component as props

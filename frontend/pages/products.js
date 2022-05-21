@@ -18,7 +18,7 @@ const Products = (props) => {
                             return (
 
 
-                                <div className="xl:w-1/3 md:w-1/2 p-4">
+                                <div key={item.attributes.slug} className="xl:w-1/3 md:w-1/2 p-4">
                                     <div className="bg-gray-100 p-6 rounded-lg">
                                         <img className=" rounded w-full object-cover object-center mb-6" src={item.attributes.image.data && "http://localhost:1337" + item.attributes.image.data.attributes.formats.medium.url} alt="content" />
                                         <h2 className="text-lg text-gray-900 font-medium title-font mb-4">{item.attributes.title}</h2>
