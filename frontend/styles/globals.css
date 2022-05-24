@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+.font1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 1.6px;
+}
+
 .scale-in-center {
     -webkit-animation: scale-in-center 1.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;
     animation: scale-in-center 1.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both;

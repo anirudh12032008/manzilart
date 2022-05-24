@@ -73,7 +73,6 @@ const Footer = (props) => {
                 </li>
               </nav>
             </div>
-
           </div>
         </div>
         <div className="bg-gray-100">
