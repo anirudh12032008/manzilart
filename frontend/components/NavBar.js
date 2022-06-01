@@ -47,7 +47,7 @@ export default function NavBar(props, reloadNavBar) {
           }}
         >
           <div>
-            <header className="text-slate-200 bg-violet-400 body-font">
+            <header className="text-black lemon-yellow body-font">
               <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
                 <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                   <img

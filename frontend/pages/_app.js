@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import { useEffect, useState } from 'react'
 import Footer from '../components/Footer';
 import 'tailwindcss/tailwind.css';
+import Head from 'next/head';
 
 const API_URL =
   process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:1337'
@@ -13,7 +14,9 @@ const API_URL =
 
 
 function MyApp({ Component, pageProps }) {
-
+  <Head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
+  </Head>
   useEffect(() => {
     console.log("I am using useEffect");
   }, [])

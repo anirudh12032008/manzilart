@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+.lemon-yellow {
+    background-color: #fff019bd
+}
+
+.lemon-yellow-light {
+    background-color: #fff019b4
+}
+
 
 .font1 {
     font-family: 'Roboto Condensed', sans-serif;
